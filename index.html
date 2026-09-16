@@ -21,26 +21,25 @@
         }
 
         header {
-            padding: 40px 20px;
+            padding: 30px 20px;
             background: linear-gradient(135deg, #ff4500, #ff8c00);
             border-radius: 12px;
             margin-bottom: 30px;
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 10px;
         }
 
         .subtitle {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             opacity: 0.9;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             background-color: #1e1e1e;
             padding: 30px;
@@ -48,31 +47,71 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
-        .about p {
-            font-size: 1.1rem;
+        .description {
             color: #ccc;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
-        .team {
+        .options-grid {
             display: flex;
-            justify-content: center;
             gap: 20px;
+            justify-content: center;
             flex-wrap: wrap;
             margin-bottom: 30px;
         }
 
         .card {
             background-color: #2a2a2a;
+            border: 2px solid #333;
+            border-radius: 12px;
             padding: 20px;
-            border-radius: 8px;
-            width: 200px;
-            border: 1px solid #333;
+            width: 300px;
+            text-align: left;
+            transition: border-color 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: #ff8c00;
         }
 
         .card h3 {
             color: #ff8c00;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #bbb;
+            margin-bottom: 15px;
+        }
+
+        .price-box {
+            background-color: #181818;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #ff4500;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        label {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        input[type="number"], select {
+            background: #333;
+            border: 1px solid #444;
+            color: #fff;
+            padding: 8px;
+            border-radius: 6px;
+            width: 100%;
         }
 
         .btn {
@@ -83,11 +122,29 @@
             text-decoration: none;
             border-radius: 25px;
             font-weight: bold;
-            transition: background 0.3s ease;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            margin-top: 10px;
+            transition: background 0.3s;
         }
 
         .btn:hover {
             background-color: #e03e00;
+        }
+
+        .total-section {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #252525;
+            border-radius: 8px;
+            border: 1px dashed #ff8c00;
+        }
+
+        .total-price {
+            font-size: 1.8rem;
+            color: #20e070;
+            font-weight: bold;
         }
 
         footer {
@@ -101,28 +158,95 @@
 
     <header>
         <h1>Embraza Shows</h1>
-        <p class="subtitle">Gerenciado por Vinicius</p>
+        <p class="subtitle">Organização e Contratações por Vinicius</p>
     </header>
 
     <div class="container">
-        <section class="about">
-            <h2>Sobre a Empresa</h2>
-            <p>Contamos com uma equipe completa de cantores e DJs prontos para agitar e fazer o seu evento ou festa inesquecível.</p>
-        </section>
+        <h2>Simulador de Orçamento</h2>
+        <p class="description">Escolha a atração para sua festa ou evento e configure as horas para ver o orçamento em tempo real.</p>
 
-        <section class="team">
+        <div class="options-grid">
+            <!-- OPÇÃO 1: CANTORES -->
             <div class="card">
-                <h3>Cantores</h3>
-                <p>Diversos estilos para animar o público.</p>
+                <h3>🎤 Show ao Vivo (Cantores)</h3>
+                <p>Equipe completa com vocalistas e banda para animar seu evento.</p>
+                <div class="price-box">R$ <span id="price-cantor">1500</span>,00 (base)</div>
+                
+                <div class="controls">
+                    <label>Horas de Show:</label>
+                    <input type="number" id="hours-cantor" value="2" min="1" max="10" onchange="calcularOrcamento()">
+                </div>
             </div>
-            <div class="card">
-                <h3>DJs</h3>
-                <p>Os melhores sets para sua festa.</p>
-            </div>
-        </section>
 
-        <a href="#contato" class="btn">Faça um Orçamento</a>
+            <!-- OPÇÃO 2: DJS -->
+            <div class="card">
+                <h3>🎧 Set de DJ</h3>
+                <p>Os melhores DJs com estrutura completa de iluminação e som.</p>
+                <div class="price-box">R$ <span id="price-dj">800</span>,00 (base)</div>
+
+                <div class="controls">
+                    <label>Horas de Set:</label>
+                    <input type="number" id="hours-dj" value="3" min="1" max="10" onchange="calcularOrcamento()">
+                </div>
+            </div>
+        </div>
+
+        <!-- SELEÇÃO DE ATRAÇÃO E CÁLCULO -->
+        <div class="controls" style="max-width: 400px; margin: 0 auto;">
+            <label>Qual atração você deseja contratar?</label>
+            <select id="tipo-contratacao" onchange="calcularOrcamento()">
+                <option value="cantor">Apenas Cantores</option>
+                <option value="dj">Apenas DJ</option>
+                <option value="ambos">Pacote Completo (Cantores + DJ)</option>
+            </select>
+        </div>
+
+        <div class="total-section">
+            <h3>Valor Estimado do Orçamento:</h3>
+            <div class="total-price" id="total-valor">R$ 0,00</div>
+            <button class="btn" onclick="solicitarOrcamento()">Contratar com Vinicius</button>
+        </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Embraza Shows - Desenvolvido por Vinicius</p>
+        <p>&copy; 2026 Embraza Shows - Gerenciado por Vinicius</p>
+    </footer>
+
+    <script>
+        function calcularOrcamento() {
+            // Valores base por hora
+            const precoHoraCantor = 750; // Exemplo: R$ 750 por hora
+            const precoHoraDJ = 300;     // Exemplo: R$ 300 por hora
+
+            const horasCantor = parseInt(document.getElementById('hours-cantor').value) || 0;
+            const horasDJ = parseInt(document.getElementById('hours-dj').value) || 0;
+            const tipo = document.getElementById('tipo-contratacao').value;
+
+            // Atualiza os preços nos cards
+            document.getElementById('price-cantor').innerText = horasCantor * precoHoraCantor;
+            document.getElementById('price-dj').innerText = horasDJ * precoHoraDJ;
+
+            let total = 0;
+
+            if (tipo === 'cantor') {
+                total = horasCantor * precoHoraCantor;
+            } else if (tipo === 'dj') {
+                total = horasDJ * precoHoraDJ;
+            } else if (tipo === 'ambos') {
+                total = (horasCantor * precoHoraCantor) + (horasDJ * precoHoraDJ);
+            }
+
+            document.getElementById('total-valor').innerText = 'R$ ' + total.toLocaleString('pt-BR') + ',00';
+        }
+
+        function solicitarOrcamento() {
+            const total = document.getElementById('total-valor').innerText;
+            alert("Solicitação enviada para Vinicius! Valor estimado: " + total);
+        }
+
+        // Executa o cálculo inicial ao carregar a página
+        calcularOrcamento();
+    </script>
+
+</body>
+</html>
