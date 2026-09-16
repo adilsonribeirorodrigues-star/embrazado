@@ -1,13 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Embraza Shows | Vinicius</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            line-height: 1.6;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header {
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #ff4500, #ff8c00);
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 25px;
+        }
+
+        .team {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 8px;
+            width: 200px;
+            border: 1px solid #333;
+        }
+
+        .card h3 {
+            color: #ff8c00;
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #ff4500;
+            color: #fff;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #e03e00;
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
 </head>
 <body>
-    <h1>embraza shows</h1>
-    <p>vou ter uma equipe de cantores e djs para fazerem contratações para festas e evntos</p>
-    
-</body>
-</html>
+
+    <header>
+        <h1>Embraza Shows</h1>
+        <p class="subtitle">Gerenciado por Vinicius</p>
+    </header>
+
+    <div class="container">
+        <section class="about">
+            <h2>Sobre a Empresa</h2>
+            <p>Contamos com uma equipe completa de cantores e DJs prontos para agitar e fazer o seu evento ou festa inesquecível.</p>
+        </section>
+
+        <section class="team">
+            <div class="card">
+                <h3>Cantores</h3>
+                <p>Diversos estilos para animar o público.</p>
+            </div>
+            <div class="card">
+                <h3>DJs</h3>
+                <p>Os melhores sets para sua festa.</p>
+            </div>
+        </section>
+
+        <a href="#contato" class="btn">Faça um Orçamento</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Embraza Shows - Desenvolvido por Vinicius</p>
