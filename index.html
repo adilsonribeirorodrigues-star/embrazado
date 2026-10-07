@@ -1,163 +1,88 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog do Adilson</title>
-  <style>
-    :root {
-      --primary-color: #0066cc;
-      --secondary-color: #004080;
-      --bg-color: #f0f4f8;
-      --card-bg: #ffffff;
-      --text-color: #1a252c;
-      --accent-color: #3b82f6;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        /* Nome em cor azul-marinho */
+        h1.meu-nome {
+            color: navy; /* Azul Marinho */
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      line-height: 1.6;
-    }
+        /* Container dos botões */
+        .reaction-container {
+            display: flex;
+            gap: 15px;
+        }
 
-    header {
-      background-color: var(--primary-color);
-      color: white;
-      text-align: center;
-      padding: 2.5rem 1rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
+        /* Estilo dos botões */
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.1s, background-color 0.2s;
+        }
 
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
+        button:active {
+            transform: scale(0.95);
+        }
 
-    header p {
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
+        .btn-like {
+            background-color: #28a745;
+            color: white;
+        }
 
-    main {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-
-    .post {
-      background-color: var(--card-bg);
-      border-left: 5px solid var(--primary-color);
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-      transition: transform 0.2s ease;
-    }
-
-    .post:hover {
-      transform: translateY(-2px);
-    }
-
-    .post h2 {
-      color: var(--secondary-color);
-      margin-bottom: 0.5rem;
-    }
-
-    .post-date {
-      font-size: 0.85rem;
-      color: #666;
-      margin-bottom: 1rem;
-    }
-
-    .post p {
-      margin-bottom: 1.2rem;
-    }
-
-    .like-btn {
-      background-color: #e6f0fa;
-      color: var(--primary-color);
-      border: 1px solid var(--accent-color);
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: bold;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: all 0.2s ease;
-    }
-
-    .like-btn:hover {
-      background-color: var(--primary-color);
-      color: white;
-    }
-
-    .like-btn.liked {
-      background-color: var(--primary-color);
-      color: white;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      color: #666;
-      border-top: 1px solid #dcdcdc;
-      margin-top: 2rem;
-    }
-  </style>
+        .btn-dislike {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <h1>Blog do Adilson</h1>
-    <p>Ideias, reflexões e tecnologia</p>
-  </header>
+    <!-- Substitua "Seu Nome Aqui" pelo seu nome -->
+    <h1 class="meu-nome">Seu Nome Aqui</h1>
 
-  <main>
-    <article class="post">
-      <h2>Bem-vindo ao meu novo site!</h2>
-      <div class="post-date">Publicado em 7 de Outubro, 2026</div>
-      <p>Este é o primeiro post do meu blog oficial. Aqui vou compartilhar experiências, projetos e dicas. Fique à vontade para deixar sua curtida abaixo!</p>
-      <button class="like-btn" onclick="toggleLike(this)">
-        👍 <span class="like-count">0</span> Curtidas
-      </button>
-    </article>
+    <div class="reaction-container">
+        <button class="btn-like" onclick="curtir()">
+            👍 Curtir (<span id="like-count">0</span>)
+        </button>
+        <button class="btn-dislike" onclick="descurtir()">
+            👎 Descurtir (<span id="dislike-count">0</span>)
+        </button>
+    </div>
 
-    <article class="post">
-      <h2>Por que escolher tons de azul para a interface?</h2>
-      <div class="post-date">Publicado em 6 de Outubro, 2026</div>
-      <p>O azul transmite confiança, tranquilidade e clareza visual. É uma das cores mais utilizadas no design web moderno para garantir uma boa usabilidade.</p>
-      <button class="like-btn" onclick="toggleLike(this)">
-        👍 <span class="like-count">0</span> Curtidas
-      </button>
-    </article>
-  </main>
+    <script>
+        let likes = 0;
+        let dislikes = 0;
 
-  <footer>
-    <p>&copy; 2026 Blog do Adilson - Todos os direitos reservados.</p>
-  </footer>
+        function curtir() {
+            likes++;
+            document.getElementById('like-count').textContent = likes;
+        }
 
-  <script>
-    function toggleLike(button) {
-      const countSpan = button.querySelector('.like-count');
-      let currentLikes = parseInt(countSpan.textContent);
-
-      if (button.classList.contains('liked')) {
-        button.classList.remove('liked');
-        countSpan.textContent = currentLikes - 1;
-      } else {
-        button.classList.add('liked');
-        countSpan.textContent = currentLikes + 1;
-      }
-    }
-  </script>
+        function descurtir() {
+            dislikes++;
+            document.getElementById('dislike-count').textContent = dislikes;
+        }
+    </script>
 
 </body>
 </html>
+     
