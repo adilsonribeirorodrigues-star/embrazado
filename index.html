@@ -1,255 +1,163 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embraza Shows | Vinicius</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog do Adilson</title>
+  <style>
+    :root {
+      --primary-color: #0066cc;
+      --secondary-color: #004080;
+      --bg-color: #f0f4f8;
+      --card-bg: #ffffff;
+      --text-color: #1a252c;
+      --accent-color: #3b82f6;
+    }
 
-        body {
-            background-color: #121212;
-            color: #ffffff;
-            line-height: 1.6;
-            padding: 20px;
-            text-align: center;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        header {
-            padding: 30px 20px;
-            background: linear-gradient(135deg, #ff4500, #ff8c00);
-            border-radius: 12px;
-            margin-bottom: 30px;
-        }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
 
-        h1 {
-            font-size: 2.2rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+    header {
+      background-color: var(--primary-color);
+      color: white;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-        .subtitle {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: #1e1e1e;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
 
-        .description {
-            color: #ccc;
-            margin-bottom: 30px;
-        }
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
 
-        .options-grid {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-        }
+    .post {
+      background-color: var(--card-bg);
+      border-left: 5px solid var(--primary-color);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease;
+    }
 
-        .card {
-            background-color: #2a2a2a;
-            border: 2px solid #333;
-            border-radius: 12px;
-            padding: 20px;
-            width: 300px;
-            text-align: left;
-            transition: border-color 0.3s ease;
-        }
+    .post:hover {
+      transform: translateY(-2px);
+    }
 
-        .card:hover {
-            border-color: #ff8c00;
-        }
+    .post h2 {
+      color: var(--secondary-color);
+      margin-bottom: 0.5rem;
+    }
 
-        .card h3 {
-            color: #ff8c00;
-            margin-bottom: 10px;
-        }
+    .post-date {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
 
-        .card p {
-            font-size: 0.95rem;
-            color: #bbb;
-            margin-bottom: 15px;
-        }
+    .post p {
+      margin-bottom: 1.2rem;
+    }
 
-        .price-box {
-            background-color: #181818;
-            padding: 10px;
-            border-radius: 6px;
-            margin-bottom: 15px;
-            font-weight: bold;
-            color: #ff4500;
-        }
+    .like-btn {
+      background-color: #e6f0fa;
+      color: var(--primary-color);
+      border: 1px solid var(--accent-color);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
 
-        .controls {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+    .like-btn:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
 
-        label {
-            font-size: 0.85rem;
-            color: #aaa;
-        }
+    .like-btn.liked {
+      background-color: var(--primary-color);
+      color: white;
+    }
 
-        input[type="number"], select {
-            background: #333;
-            border: 1px solid #444;
-            color: #fff;
-            padding: 8px;
-            border-radius: 6px;
-            width: 100%;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: #ff4500;
-            color: #fff;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
-            width: 100%;
-            margin-top: 10px;
-            transition: background 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #e03e00;
-        }
-
-        .total-section {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #252525;
-            border-radius: 8px;
-            border: 1px dashed #ff8c00;
-        }
-
-        .total-price {
-            font-size: 1.8rem;
-            color: #20e070;
-            font-weight: bold;
-        }
-
-        footer {
-            margin-top: 40px;
-            font-size: 0.9rem;
-            color: #777;
-        }
-    </style>
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: #666;
+      border-top: 1px solid #dcdcdc;
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>Embraza Shows</h1>
-        <p class="subtitle">Organização e Contratações por Vinicius</p>
-    </header>
+  <header>
+    <h1>Blog do Adilson</h1>
+    <p>Ideias, reflexões e tecnologia</p>
+  </header>
 
-    <div class="container">
-        <h2>Simulador de Orçamento</h2>
-        <p class="description">Escolha a atração para sua festa ou evento e configure as horas para ver o orçamento em tempo real.</p>
+  <main>
+    <article class="post">
+      <h2>Bem-vindo ao meu novo site!</h2>
+      <div class="post-date">Publicado em 7 de Outubro, 2026</div>
+      <p>Este é o primeiro post do meu blog oficial. Aqui vou compartilhar experiências, projetos e dicas. Fique à vontade para deixar sua curtida abaixo!</p>
+      <button class="like-btn" onclick="toggleLike(this)">
+        👍 <span class="like-count">0</span> Curtidas
+      </button>
+    </article>
 
-        <div class="options-grid">
-            <!-- OPÇÃO 1: CANTORES -->
-            <div class="card">
-                <h3>🎤 Show ao Vivo (Cantores)</h3>
-                <p>Equipe completa com vocalistas e banda para animar seu evento.</p>
-                <div class="price-box" id="price-cantor">R$ 0,00</div>
-                
-                <div class="controls">
-                    <label>Horas de Show:</label>
-                    <input type="number" id="hours-cantor" value="1" min="1" max="10" onchange="calcularOrcamento()">
-                </div>
-            </div>
+    <article class="post">
+      <h2>Por que escolher tons de azul para a interface?</h2>
+      <div class="post-date">Publicado em 6 de Outubro, 2026</div>
+      <p>O azul transmite confiança, tranquilidade e clareza visual. É uma das cores mais utilizadas no design web moderno para garantir uma boa usabilidade.</p>
+      <button class="like-btn" onclick="toggleLike(this)">
+        👍 <span class="like-count">0</span> Curtidas
+      </button>
+    </article>
+  </main>
 
-            <!-- OPÇÃO 2: DJS -->
-            <div class="card">
-                <h3>🎧 Set de DJ</h3>
-                <p>Os melhores DJs com estrutura completa de iluminação e som.</p>
-                <div class="price-box" id="price-dj">R$ 0,00</div>
+  <footer>
+    <p>&copy; 2026 Blog do Adilson - Todos os direitos reservados.</p>
+  </footer>
 
-                <div class="controls">
-                    <label>Horas de Set:</label>
-                    <input type="number" id="hours-dj" value="1" min="1" max="10" onchange="calcularOrcamento()">
-                </div>
-            </div>
-        </div>
+  <script>
+    function toggleLike(button) {
+      const countSpan = button.querySelector('.like-count');
+      let currentLikes = parseInt(countSpan.textContent);
 
-        <!-- SELEÇÃO DE ATRAÇÃO E CÁLCULO -->
-        <div class="controls" style="max-width: 400px; margin: 0 auto;">
-            <label>Qual atração você deseja contratar?</label>
-            <select id="tipo-contratacao" onchange="calcularOrcamento()">
-                <option value="cantor">Apenas Cantores</option>
-                <option value="dj">Apenas DJ</option>
-                <option value="ambos">Pacote Completo (Cantores + DJ)</option>
-            </select>
-        </div>
-
-        <div class="total-section">
-            <h3>Valor Estimado do Orçamento:</h3>
-            <div class="total-price" id="total-valor">R$ 0,00</div>
-            <button class="btn" onclick="solicitarOrcamento()">Contratar com Vinicius</button>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 Embraza Shows - Gerenciado por Vinicius</p>
-    </footer>
-
-    <script>
-        function calcularOrcamento() {
-            // Valores atualizados por hora
-            const precoHoraCantor = 10000; // R$ 10.000,00 por hora
-            const precoHoraDJ = 7500;     // R$ 7.500,00 por hora
-
-            const horasCantor = parseInt(document.getElementById('hours-cantor').value) || 0;
-            const horasDJ = parseInt(document.getElementById('hours-dj').value) || 0;
-            const tipo = document.getElementById('tipo-contratacao').value;
-
-            const totalCantor = horasCantor * precoHoraCantor;
-            const totalDJ = horasDJ * precoHoraDJ;
-
-            // Atualiza o valor nos cards individuais formatado em moeda brasileira
-            document.getElementById('price-cantor').innerText = totalCantor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-            document.getElementById('price-dj').innerText = totalDJ.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-
-            let total = 0;
-
-            if (tipo === 'cantor') {
-                total = totalCantor;
-            } else if (tipo === 'dj') {
-                total = totalDJ;
-            } else if (tipo === 'ambos') {
-                total = totalCantor + totalDJ;
-            }
-
-            document.getElementById('total-valor').innerText = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-        }
-
-        function solicitarOrcamento() {
-            const total = document.getElementById('total-valor').innerText;
-            alert("Solicitação enviada para Vinicius! Valor estimado: " + total);
-        }
-
-        // Executa o cálculo inicial ao carregar a página
-        calcularOrcamento();
-    </script>
+      if (button.classList.contains('liked')) {
+        button.classList.remove('liked');
+        countSpan.textContent = currentLikes - 1;
+      } else {
+        button.classList.add('liked');
+        countSpan.textContent = currentLikes + 1;
+      }
+    }
+  </script>
 
 </body>
 </html>
